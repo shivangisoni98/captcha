@@ -1,0 +1,71 @@
+﻿
+@using SuperCaptcha;
+@using SuperCaptcha.Mvc;
+
+
+@model mvctest.Models.Test
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Test</legend>
+
+        <div ng-controller="AccountController">
+           
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CouponCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CouponCode)
+            @*Html.ValidationMessageFor(m => m.CouponCode, "", new { @class = "text-danger" })*@
+        </div>
+
+
+        <p class="Error">  @ViewBag.Err </p>
+        <p>
+            <input type="submit" value="Apply" />
+        </p>
+
+
+        @if (Model.b)
+        {
+    <div class="form-group">
+        <div class="col-md-4">
+            @*Html.Captcha(5)
+                @{
+                    var captcha = @Html.Captcha("Refresh", "Enter the text shown in imag", 5, "Is required field.", false);
+                }
+
+                @captcha.RenderMarkup()
+
+                @section scripts
+        {
+                    @captcha.RenderScript()
+                }
+
+                @Html.Captcha("Refresh", "Enter the text you see above:", 5, "Is required field", true)
+
+
+                <br />
+                <p class="Error">
+
+                    @ViewBag.ErrMessage
+                </p>*@
+           
+            @Html.CaptchaFor(m => m.CaptchaText, new { @class = "form control" })
+            <p>
+                <input type="submit" value="Check" />
+            </p>
+        </div>
+        </div>
+        }
+    </fieldset>
+}  
